@@ -80,7 +80,7 @@ func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int
 	defer helper.CommitOrRollaback(tx)
 
 	category, errFind := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	if err != nil {
+	if errFind != nil {
 		panic(exception.NewNotFoundError(errFind.Error()))
 	}
 

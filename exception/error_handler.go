@@ -7,6 +7,12 @@ import (
 	"net/http"
 )
 
+const (
+	StatusBadRequest          = "BAD REQUEST"
+	StatusNotFound            = "NOT FOUND"
+	StatusInternalServerError = "INTERNAL SERVER ERROR"
+)
+
 func ErrorHandler(writer http.ResponseWriter, request *http.Request, err interface{}) {
 
 	if notFoundError(writer, request, err) {
@@ -28,7 +34,7 @@ func validationErrors(writer http.ResponseWriter, request *http.Request, err int
 
 		webResponse := web.WebResponse{
 			Code:   http.StatusBadRequest,
-			Status: "BAD REQUEST",
+			Status: StatusBadRequest,
 			Data:   exception.Error(),
 		}
 
@@ -47,7 +53,7 @@ func notFoundError(writer http.ResponseWriter, request *http.Request, err any) b
 
 		webResponse := web.WebResponse{
 			Code:   http.StatusNotFound,
-			Status: "NOT FOUND",
+			Status: StatusNotFound,
 			Data:   exception.Error,
 		}
 
@@ -64,7 +70,7 @@ func internalServerError(writer http.ResponseWriter, request *http.Request, err 
 
 	webResponse := web.WebResponse{
 		Code:   http.StatusInternalServerError,
-		Status: "INTERNAL SERVER ERROR",
+		Status: StatusInternalServerError,
 		Data:   err,
 	}
 
