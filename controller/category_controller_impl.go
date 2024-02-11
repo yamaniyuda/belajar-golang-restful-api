@@ -4,9 +4,10 @@ import (
 	"belajar-golang-restful-api/helper"
 	"belajar-golang-restful-api/model/web"
 	"belajar-golang-restful-api/service"
-	"github.com/julienschmidt/httprouter"
 	"net/http"
 	"strconv"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 type CategoryControllerImpl struct {
